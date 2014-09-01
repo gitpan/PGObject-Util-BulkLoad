@@ -27,6 +27,10 @@
       },
       "runtime" : {
          "requires" : {
+            "DBD::Pg" : "0",
+            "DBI" : "0",
+            "Memoize" : "0",
+            "Text::CSV" : "0",
             "perl" : "5.006"
          }
       }
@@ -39,5 +43,5 @@
          "web" : "https://github.com/einhverfr/PGObject-Util-BulkLoad"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

@@ -18,6 +18,10 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
+        DBI                 => 0,
+        'DBD::Pg'           => 0,
+        'Text::CSV'         => 0,
+        'Memoize'           => 0,
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
     },
