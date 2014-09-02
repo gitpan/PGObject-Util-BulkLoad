@@ -1,5 +1,5 @@
 {
-   "abstract" : "unknown",
+   "abstract" : "Bulk load records into PostgreSQL",
    "author" : [
       "Chris Travers <chris.travers@gmail.com>"
    ],
@@ -31,6 +31,7 @@
             "DBI" : "0",
             "Memoize" : "0",
             "Text::CSV" : "0",
+            "Try::Tiny" : "0",
             "perl" : "5.006"
          }
       }
@@ -43,5 +44,5 @@
          "web" : "https://github.com/einhverfr/PGObject-Util-BulkLoad"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }

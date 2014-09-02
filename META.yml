@@ -1,5 +1,5 @@
 ---
-abstract: unknown
+abstract: 'Bulk load records into PostgreSQL'
 author:
   - 'Chris Travers <chris.travers@gmail.com>'
 build_requires:
@@ -20,7 +20,8 @@ requires:
   DBI: 0
   Memoize: 0
   Text::CSV: 0
+  Try::Tiny: 0
   perl: 5.006
 resources:
   repository: https://github.com/einhverfr/PGObject-Util-BulkLoad.git
-version: 0.02
+version: 0.03

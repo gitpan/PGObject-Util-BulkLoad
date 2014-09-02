@@ -11,29 +11,29 @@ use Try::Tiny;
 
 =head1 NAME
 
-PGObject::Util::BulkUpload - Bulk Upload records into PostgreSQL
+PGObject::Util::BulkLoad - Bulk load records into PostgreSQL
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
 
 To insert all rows into a table using COPY:
 
-  PGObject::Util::BulkUpload->copy(
+  PGObject::Util::BulkLoad->copy(
       {table => 'mytable', insert_cols => ['col1', 'col2'], dbh => $dbh}, 
       @objects
   );
 
 To copy to a temp table and then upsert:
 
-  PGObject::Util::BulkUpload->upsert(
+  PGObject::Util::BulkLoad->upsert(
       {table       => 'mytable', 
        insert_cols => ['col1', 'col2'], 
        update_cols => ['col1'],
@@ -44,13 +44,13 @@ To copy to a temp table and then upsert:
 
 Or if you prefer to run the statements yourself:
 
-  PGObject::Util::BulkUpload->statement(
+  PGObject::Util::BulkLoad->statement(
      table => 'mytable', type  => 'temp', tempname => 'foo_123'
   );
-  PGObject::Util::BulkUpload->statement(
+  PGObject::Util::BulkLoad->statement(
      table => 'mytable', type  => 'copy', insert_cols => ['col1', 'col2']
   );
-  PGObject::Util::BulkUpload->statement(
+  PGObject::Util::BulkLoad->statement(
       type        => 'upsert',
       tempname    => 'foo_123',
       table       => 'mytable',
@@ -62,15 +62,15 @@ Or if you prefer to run the statements yourself:
 If you are running repetitive calls, you may be able to trade time for memory 
 using Memoize by unning the following:
 
-  PGObject::Util::BulkUpload->memoize_statements;
+  PGObject::Util::BulkLoad->memoize_statements;
 
 To unmemoize:
 
-  PGObject::Util::BulkUpload->unmemoize;
+  PGObject::Util::BulkLoad->unmemoize;
 
 To flush cache
 
-  PGObject::Util::BulkUpload->flush_memoization;
+  PGObject::Util::BulkLoad->flush_memoization;
 
 =head1 DESCRIPTION
 
@@ -344,7 +344,7 @@ Chris Travers, C<< <chris.travers at gmail.com> >>
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-pgobject-util-bulkupload at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=PGObject-Util-BulkUpload>.  I will be notified, and then you'll
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=PGObject-Util-BulkLoad>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 
@@ -354,7 +354,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc PGObject::Util::BulkUpload
+    perldoc PGObject::Util::BulkLoad
 
 
 You can also look for information at:
@@ -363,19 +363,19 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=PGObject-Util-BulkUpload>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=PGObject-Util-BulkLoad>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/PGObject-Util-BulkUpload>
+L<http://annocpan.org/dist/PGObject-Util-BulkLoad>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/PGObject-Util-BulkUpload>
+L<http://cpanratings.perl.org/d/PGObject-Util-BulkLoad>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/PGObject-Util-BulkUpload/>
+L<http://search.cpan.org/dist/PGObject-Util-BulkLoad/>
 
 =back
 

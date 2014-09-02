@@ -1,5 +1,9 @@
 Revision history for PGObject-Util-BulkLoad
 
+0.03    2014-09-02
+        Minor packaging fixes
+        Documentation fixes
+
 0.02    2014-09-02
         Minor packaging fixes
         Performance improvements

@@ -22,6 +22,7 @@ WriteMakefile(
         'DBD::Pg'           => 0,
         'Text::CSV'         => 0,
         'Memoize'           => 0,
+        'Try::Tiny'         => 0,
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
     },
