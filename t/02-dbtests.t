@@ -3,7 +3,7 @@ use PGObject::Util::BulkLoad;
 use DBI;
 
 plan skip_all => 'Not set up for db tests' unless $ENV{DB_TESTING};
-plan tests => 15;
+plan tests => 29;
 
 # SETUP
 my $dbh1 = DBI->connect('dbi:Pg:dbname=postgres', 'postgres');
@@ -65,7 +65,7 @@ my @secondobj = (
   { bar=> '424', 'b"a"z' => '123446', 'fo"o"' => 'f,0,0,bar',  },
   { bar=> '425', 'b"a"z' => '123444', 'fo"o"' => 'foo2',       },
   { bar=> '426', 'b"a"z' => '123448', 'fo"o"' => 'foo3',       },
-  { bar=> '427', 'b"a"z' => '123444', 'fo"o"' => 'foo4',       },
+  { bar=> '427',                      'fo"o"' => 'foo4',       },
 );
 
 ok(PGObject::Util::BulkLoad::copy($series1, @mainobj), 
@@ -88,8 +88,23 @@ ok(!PGObject::Util::BulkLoad::copy($series1, @mainobj),
 
 is(count_in_table('foo'), 6, '6 objects in table after second failed copy');
 
-ok(PGObject::Util::BulkLoad::upsert($series1, @mainobj, {foo => '123', bar => 111}), 
+my $stats;
+
+ok($stats = PGObject::Util::BulkLoad::upsert(
+             { %$series1, group_stats_by => ['foo']}, 
+             @mainobj, 
+             {foo => '123', bar => 111}), 
 'can upsert after copy from previous routine');
+
+for (@$stats) {
+    if ($_->{keys}->{foo} eq '123') {
+       is $_->{stats}->{inserts}, 1, "insert 1 for foo 123";
+       is $_->{stats}->{updates}, 0, "update 0 for foo 123";
+    } else {
+       is $_->{stats}->{inserts}, 0, "insert 0 for foo $_->{keys}->{foo}";
+       is $_->{stats}->{updates}, 1, "update 1 for foo $_->{keys}->{foo}";
+    }
+}
 
 is(count_in_table('foo'), 7, '7 objects in table after second upsert');
 

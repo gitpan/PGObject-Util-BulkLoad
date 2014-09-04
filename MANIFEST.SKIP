@@ -5,6 +5,7 @@
 \B\.hg\b
 \B\.git\b
 \B\.gitignore\b
+\B\.travis.yml\b
 
 # Avoid Makemaker generated and utility files.
 \bMANIFEST\.bak

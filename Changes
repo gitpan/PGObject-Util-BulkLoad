@@ -1,5 +1,9 @@
 Revision history for PGObject-Util-BulkLoad
 
+0.04    2014-09-05
+        Includes the ability to grab statistics on expected inserts and updates
+        grouped by arbitrary columns
+
 0.03    2014-09-02
         Minor packaging fixes
         Documentation fixes
